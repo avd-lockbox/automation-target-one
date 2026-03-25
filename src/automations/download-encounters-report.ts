@@ -22,8 +22,8 @@ export async function execute(context: ExecutionContext): Promise<ExecutionResul
     let page!: Page;
 
     await context.step('Navigate', async (step) => {
-        page = await step.newPage();
-        // TODO: page = await navigateToReport(context.browserContext, context.credentials.url, 'encounters');
+        // TODO (replaces this step.newPage() call): page = await navigateToReport(context.browserContext, context.credentials.url, 'encounters');
+        // navigateToReport creates the page internally via browserContext.newPage() — remove step.newPage() when implementing.
     });
 
     await context.step('Filter', async (_step) => {
