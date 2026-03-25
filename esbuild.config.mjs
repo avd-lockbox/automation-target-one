@@ -23,7 +23,7 @@ await Promise.all(
             platform: 'node',
             format: 'esm',
             target: 'node22',
-            external: ['playwright'],
+            external: ['@playwright/test', 'playwright'],
         }),
     ),
 );

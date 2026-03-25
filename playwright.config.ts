@@ -6,6 +6,7 @@ export default defineConfig({
         baseURL: process.env.TARGET_URL ?? 'http://localhost:4200',
         viewport: { width: 1920, height: 1080 },
         headless: true,
+        acceptDownloads: true,
     },
     timeout: 30_000,
     testDir: './tests',

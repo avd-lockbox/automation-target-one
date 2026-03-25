@@ -35,8 +35,8 @@ export interface ExecutionContext {
 export interface StepContext {
     /** Opens a new page within the step's browser context. Call once per step; reuse the returned Page across shared utilities. */
     newPage(): Promise<Page>;
-    /** The page opened by newPage(). Available after the first call — pass this Page to navigateToReport, applyDateFilter, and downloadReportCsv. */
-    readonly page: Page;
+    /** The page opened by newPage(). Undefined until newPage() is called — pass this Page to navigateToReport, applyDateFilter, and downloadReportCsv. */
+    readonly page: Page | undefined;
     readonly logger: Logger;
     screenshot(label?: string): Promise<void>;
 }
