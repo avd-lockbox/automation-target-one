@@ -9,6 +9,9 @@ import type { BrowserContext, Page } from '@playwright/test';
  * @param reportId - Report identifier matching the URL segment (e.g. 'claims', 'ar')
  * @returns The Page, ready for filter/download interaction
  */
+// NOTE for LAENG-30 implementer: this function owns page creation via browserContext.newPage().
+// In the Navigate step, use: `page = await navigateToReport(context.browserContext, ...)` and do
+// NOT call `step.newPage()` before it — that would open a second page within the same step.
 export async function navigateToReport(
     browserContext: BrowserContext,
     baseUrl: string,
