@@ -1,6 +1,6 @@
 {
   "extends": "@lockbox/tsconfig/automation.json",
-  "include": ["src", "tests"],
+  "include": ["src", "tests", "types"],
   "compilerOptions": {
     "outDir": "dist"
   }
