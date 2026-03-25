@@ -26,14 +26,14 @@ export async function execute(context: ExecutionContext): Promise<ExecutionResul
         // TODO: page = await navigateToReport(context.browserContext, context.credentials.url, 'claims');
     });
 
-    await context.step('Filter', async (step) => {
+    await context.step('Filter', async (_step) => {
         // TODO: await applyDateFilter(page, 'dateOfService', {
         //     dateFrom: context.parameters.dateFrom as string | undefined,
         //     dateTo:   context.parameters.dateTo   as string | undefined,
         // });
     });
 
-    await context.step('Download', async (step) => {
+    await context.step('Download', async (_step) => {
         // TODO: const filePath = await downloadReportCsv(page, downloadDir);
         // TODO: await context.artifacts.upload(filePath, { name: 'claims.csv', type: 'FILE' });
         // TODO: ETL integration placeholder — pass artifact ref to ETL pipeline per Platform Integration §4
