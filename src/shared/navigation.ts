@@ -12,10 +12,6 @@ import type { BrowserContext, Page } from '@playwright/test';
 // NOTE for LAENG-30 implementer: this function owns page creation via browserContext.newPage().
 // In the Navigate step, use: `page = await navigateToReport(context.browserContext, ...)` and do
 // NOT call `step.newPage()` before it — that would open a second page within the same step.
-export async function navigateToReport(
-    browserContext: BrowserContext,
-    baseUrl: string,
-    reportId: string,
-): Promise<Page> {
-    throw new Error(`navigateToReport not yet implemented for reportId="${reportId}"`);
+export function navigateToReport(_browserContext: BrowserContext, _baseUrl: string, reportId: string): Promise<Page> {
+    return Promise.reject(new Error(`navigateToReport not yet implemented for reportId="${reportId}"`));
 }

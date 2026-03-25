@@ -1,4 +1,3 @@
-import type { Page } from '@playwright/test';
 import type { AutomationMetadata, ExecutionContext, ExecutionResult } from '../../types/automation-sdk.js';
 
 export const metadata: AutomationMetadata = {
@@ -9,19 +8,17 @@ export const metadata: AutomationMetadata = {
     targetApplicationVersion: null,
     category: 'READ',
     parameters: [
-        { name: 'dateFrom', type: 'date',   required: false, description: 'Filter by effective start date (from)' },
-        { name: 'dateTo',   type: 'date',   required: false, description: 'Filter by effective start date (to)' },
-        { name: 'status',   type: 'string', required: false, description: 'Filter by authorization status' },
-        { name: 'payer',    type: 'string', required: false, description: 'Filter by payer' },
+        { name: 'dateFrom', type: 'date', required: false, description: 'Filter by effective start date (from)' },
+        { name: 'dateTo', type: 'date', required: false, description: 'Filter by effective start date (to)' },
+        { name: 'status', type: 'string', required: false, description: 'Filter by authorization status' },
+        { name: 'payer', type: 'string', required: false, description: 'Filter by payer' },
     ],
     browserContextOptions: { viewport: { width: 1920, height: 1080 } },
     maxDurationSeconds: 120,
 };
 
 export async function execute(context: ExecutionContext): Promise<ExecutionResult> {
-    let page!: Page;
-
-    await context.step('Navigate', async (step) => {
+    await context.step('Navigate', async (_step) => {
         // TODO (replaces this step.newPage() call): page = await navigateToReport(context.browserContext, context.credentials.url, 'prior-auths');
         // navigateToReport creates the page internally via browserContext.newPage() — remove step.newPage() when implementing.
     });

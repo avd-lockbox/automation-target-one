@@ -15,11 +15,7 @@ export interface DateRange {
  * @param dateField - The report's date field identifier (e.g. 'dateOfService')
  * @param range - Optional date range values from context.parameters
  */
-export async function applyDateFilter(
-    page: Page,
-    dateField: string,
-    range: DateRange,
-): Promise<void> {
-    if (!range.dateFrom && !range.dateTo) return;
-    throw new Error(`applyDateFilter not yet implemented for dateField="${dateField}"`);
+export function applyDateFilter(_page: Page, dateField: string, range: DateRange): Promise<void> {
+    if (!range.dateFrom && !range.dateTo) return Promise.resolve();
+    return Promise.reject(new Error(`applyDateFilter not yet implemented for dateField="${dateField}"`));
 }
