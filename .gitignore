@@ -2,5 +2,6 @@ node_modules/
 dist/
 *.js
 *.d.ts
+!types/*.d.ts
 !eslint.config.mjs
 !commitlint.config.mjs
