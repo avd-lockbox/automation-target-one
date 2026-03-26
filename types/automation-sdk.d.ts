@@ -13,6 +13,8 @@ export interface AutomationMetadata {
         viewport?: { width: number; height: number };
     };
     maxDurationSeconds?: number;
+    /** Platform retry limit. Defaults to 2 if omitted. */
+    maxRetries?: number;
 }
 
 export interface ParameterDefinition {
@@ -59,13 +61,39 @@ export interface Logger {
     debug(message: string, context?: Record<string, unknown>): void;
 }
 
-export type ArtifactType = 'FILE' | 'SCREENSHOT' | 'TRACE' | 'HAR';
+/**
+ * Artifact types from the observability spec.
+ * NOTE: spec says 'PLAYWRIGHT_TRACE' — using 'PLAYWRIGHT_TRACE' here to match;
+ * verify against runtime before Phase 2 adds DOM_SNAPSHOT/VIDEO/DATA usage.
+ */
+export type ArtifactType =
+    | 'FILE'
+    | 'SCREENSHOT'
+    | 'PLAYWRIGHT_TRACE'
+    | 'HAR'
+    | 'DOM_SNAPSHOT' // Phase 2: WRITE/COMPOUND mutation evidence
+    | 'VIDEO' // Phase 2
+    | 'DATA'; // Phase 2
+
+/**
+ * Failure categories from the retry policy and failure taxonomy spec.
+ */
+export type ErrorCategory =
+    | 'AUTH_FAILURE'
+    | 'SESSION_EXPIRED'
+    | 'ELEMENT_NOT_FOUND'
+    | 'TIMEOUT'
+    | 'TARGET_UNAVAILABLE'
+    | 'RATE_LIMITED'
+    | 'NETWORK_ERROR'
+    | 'DATA_VALIDATION'
+    | 'UNKNOWN';
 
 export interface ExecutionResult {
     outcome: 'SUCCESS' | 'PARTIAL_SUCCESS' | 'NO_DATA' | 'FAILURE';
     message?: string;
     error?: {
-        category: string;
+        category: ErrorCategory;
         retryable: boolean;
         detail?: string;
     };
